@@ -55,9 +55,9 @@ class NewIntentProcessor : AbstractProcessor() {
                 val intentMethod = MethodSpec
                         .methodBuilder("$METHOD_PREFIX$activityName")
                         .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                        .returns(classIntent)
+//                        .returns(classIntent)
                         .addParameter(classContext, "context")
-                        .addStatement("return new \$T(\$L, \$L)", classIntent, "context", "$activityClass.class")
+                        .addStatement("\$L.startActivity(new \$T(\$L, \$L))", "context", classIntent, "context", "$activityClass.class")
                         .build()
                 navigatorClass.addMethod(intentMethod)
             }
